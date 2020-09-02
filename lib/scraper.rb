@@ -29,15 +29,23 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
+    student_profile_hash = {}
 
-    #binding.pry
+    twitter = doc.css(".social-icon-container").css("a/@href").first.value
+    linkedin = doc.css(".social-icon-container").css("a/@href")[1].value
+    github = doc.css(".social-icon-container").css("a/@href")[2].value
+    blog = doc.css(".social-icon-container").css("a/@href")[3].value
+    profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
+    bio = doc.css(".bio-content").css("p").text
 
-    # twitter: doc.css(".social-icon-container").css("a/@href").first.value
-    # linkedin: doc.css(".social-icon-container").css("a/@href")[1].value
-    # github: doc.css(".social-icon-container").css("a/@href")[2].value
-    # blog: doc.css(".social-icon-container").css("a/@href")[3].value
-    # profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text
-    # bio: doc.css(".bio-content").css("p").text
+    student_profile_hash[:twitter] = twitter unless !twitter
+    student_profile_hash[:linkedin] = linkedin unless !linkedin
+    student_profile_hash[:github] = github unless !github
+    student_profile_hash[:blog] = blog unless !blog
+    student_profile_hash[:profile_quote] = profile_quote 
+    student_profile_hash[:bio] = bio 
+
+    student_profile_hash
   end
 
 end
