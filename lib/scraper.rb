@@ -42,8 +42,8 @@ class Scraper
     student_profile_hash[:linkedin] = linkedin unless !linkedin
     student_profile_hash[:github] = github unless !github
     student_profile_hash[:blog] = blog unless !blog
-    student_profile_hash[:profile_quote] = profile_quote 
-    student_profile_hash[:bio] = bio 
+    student_profile_hash[:profile_quote] = profile_quote
+    student_profile_hash[:bio] = bio
 
     student_profile_hash
   end
